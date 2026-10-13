@@ -1,1 +1,0 @@
-start cmd /c php artisan serve
