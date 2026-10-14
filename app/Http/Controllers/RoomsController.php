@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Rooms;
 use App\Http\Requests\StoreRoomsRequest;
 use App\Http\Requests\UpdateRoomsRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RoomsController extends Controller
 {
@@ -29,7 +31,15 @@ class RoomsController extends Controller
      */
     public function store(StoreRoomsRequest $request)
     {
-        //
+        if (Auth::user()->role == 'admin') {
+            $room = new Rooms();
+            $room->name = $request->name;
+            $image = Storage::disk('public')->putFile('image', $request->image);
+            $room->image = $image;
+            $room->save();
+            return redirect()->route('index');
+        }
+        return abort(403);
     }
 
     /**
