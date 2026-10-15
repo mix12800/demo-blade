@@ -6,7 +6,7 @@
         <a href="#">Заявки</a>
         <div class="border-head"></div>
     </div>
-    {{ $rooms }}
+
     <div class="block-orders">
         <button class="btn btn-add btn-open-modal">
             Добавить Помещение +
@@ -20,40 +20,46 @@
                 </tr>
 
 
-                <tr>
-                    <td><img src="" alt="" /></td>
-                    <td>
+                @foreach ($roomss as $room)
 
-                    </td>
+                <tr>
+                    <td><img src="{{ asset('storage/'.$room->image) }}" alt="" /></td>
                     <td>
+                        <h3>{{ $room->name }}</h3>
+                    </td>
+                    <td class="row">
+                        <form action="{{ route('roomdel', [$room->id]) }}" method="get">
+                            <button
+                                type="submit"
+                                class="btn btn-danger">
+                                Удалить
+                            </button>
+                        </form>
                         <button
-                            class="btn btn-danger">
-                            Удалить
-                        </button>
-                        <button
-                            class="btn btn-form btn-open-modal">
+                            class="btn btn-form btn-open-modal-edit">
                             Редактировать
                         </button>
                     </td>
                 </tr>
-
+                
+                @endforeach
             </table>
         </div>
     </div>
 </div>
 
+
 <div class="modal-fon" id="modalAddRoom">
     <div class="modal">
         <form action="room" method="post" enctype="multipart/form-data">
-            <!-- <h1 v-if="id_room">Редактировать комнату</h1> -->
             <h1>Добавить комнату</h1>
-
             <div class="mb-3">
                 <label for="name" class="label-form">Название</label>
                 <input
                     type="text"
                     id="name"
                     name="name"
+                    value="{{ old('name') }}"
                     class="input-form"
                     placeholder="Название" />
                 @error('name')

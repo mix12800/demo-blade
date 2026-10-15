@@ -6,12 +6,19 @@ use App\Http\Requests\AuthUserRequest;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Orders;
 use App\Models\Rooms;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+    public function OrderPage()
+    {
+        $roomss = Rooms::get();
+        return view('OrderPage', compact('roomss'));
+    }
 
     public function logout()
     {
@@ -54,12 +61,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        // if(Auth::user()->role == 'admin') {
-        // $rooms = Rooms::get();
-        // }
-        
-        $rooms = Rooms::get();
-        return view('index', compact('rooms'));
+        if (Auth::user()) {
+            if (Auth::user()->role == 'admin') {
+                $roomss = Rooms::get();
+                return view('index', compact('roomss'));
+            } else {
+                $orders = Orders::with('room')->where('user_id', Auth::id())->get();
+                return view('index', compact('orders'));
+            }
+        }
+        return view('index');
     }
 
     /**

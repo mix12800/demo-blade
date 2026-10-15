@@ -1,6 +1,6 @@
 <header>
     <h2>
-        <a href="#" class="name">Конференции.РФ</a>
+        <a href="{{ route('index') }}" class="name">Конференции.РФ</a>
     </h2>
     <div class="block-link">
         @auth
@@ -9,7 +9,7 @@
             href="{{ route('index') }}"
             class="link">Мои заявки</a>
         <a
-            href="Order.html"
+            href="{{ route('OrderPage') }}"
             class="link">Сформировать заявку</a>
         @endif
         @endauth

@@ -47,7 +47,8 @@ class RoomsController extends Controller
      */
     public function show(Rooms $rooms)
     {
-        //
+        // $roomss = Rooms::get();
+        // return view('index', compact('roomss', 'rooms'));
     }
 
     /**
@@ -63,7 +64,17 @@ class RoomsController extends Controller
      */
     public function update(UpdateRoomsRequest $request, Rooms $rooms)
     {
-        //
+        if (Auth::user()->role == 'admin') {
+            $rooms->name = $request->name;
+            if ($request->image) {
+                Storage::delete($rooms->image);
+                $image = Storage::disk('public')->putFile('image', $request->image);
+                $rooms->image = $image;
+            }
+            $rooms->save();
+            return redirect()->route('index');
+        }
+        return abort(403);
     }
 
     /**
@@ -71,6 +82,10 @@ class RoomsController extends Controller
      */
     public function destroy(Rooms $rooms)
     {
-        //
+        if (Auth::user()->role == 'admin') {
+            $rooms->delete();
+            return redirect()->route('index');
+        }
+        return abort(403);
     }
 }

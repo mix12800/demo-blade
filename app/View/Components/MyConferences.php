@@ -11,9 +11,12 @@ class MyConferences extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+
+    public $orders;
+
+    public function __construct($orders)
     {
-        //
+        $this->orders = $orders;
     }
 
     /**

@@ -4,19 +4,25 @@
 
 <body>
     <x-header />
+
     @auth
+
     @if (Auth::user()->role == 'admin')
-    
-    <x-panel-office :rooms="$rooms" />
+
+    <x-panel-office :roomss="$roomss" />
+
     @else
-    <x-my-conferences />
+
+    <x-my-conferences :orders="$orders" />
+
     @endif
+
     @else
     <x-registration />
+
     @endauth
 
-    <script src="{{ asset('storage/js/script.js') }}"></script>
-
+    <x-script />
 </body>
 
 </html>

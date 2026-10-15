@@ -11,10 +11,10 @@ class panelOffice extends Component
     /**
      * Create a new component instance.
      */
-    public $rooms;
-    public function __construct($rooms)
+    public $roomss;
+    public function __construct($roomss)
     {
-        $this->rooms = $rooms;
+        $this->roomss = $roomss;
     }
 
     /**

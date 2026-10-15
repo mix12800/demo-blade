@@ -1,0 +1,1 @@
+<script src="{{ asset('storage/js/script.js') }}"></script>
