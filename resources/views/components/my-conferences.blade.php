@@ -15,11 +15,23 @@
         <tr>
             <td><img src="{{ asset('storage/'.$order->room->image ) }}" alt="" /></td>
             <td> {{ $order->room->name }} </td>
-            <td> {{ $order->pay }} </td>
-            <td> {{ $order->name }} </td>
-            <td> {{ $order->date }} </td>
             <td>
-                <span class="status">{{ $order->status }}</span>
+                @if ($order->pay == 'cash')
+                При очном посещении
+                @else
+                Переводом СБП
+                @endif
+            </td>
+            <td> {{ $order->name }} </td>
+            <td> {{ date('d.m.Y', strtotime($order->date)) }} </td>
+            <td>
+                @if ($order->status == 'new')
+                <span class="status new">Новая</span>
+                @elseif($order->status == 'active')
+                <span class="status active">Мероприятие назначено</span>
+                @else
+                <span class="status completed">Завершено</span>
+                @endif
             </td>
             <td>
                 <!-- <p>Отзыв отправлен</p> -->

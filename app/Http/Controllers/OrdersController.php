@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
+
+    public function PanelOrdersPage()
+    {
+        $orders = Orders::with('room')->get();
+        return view('PanelOrders', compact('orders'));
+    }
     /**
      * Display a listing of the resource.
      */

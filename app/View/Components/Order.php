@@ -6,15 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class OrderPage extends Component
+class Order extends Component
 {
     /**
      * Create a new component instance.
      */
 
-    public function __construct()
+    public $order;
+    public function __construct($order)
     {
-        // 
+        $this->order = $order;
     }
 
     /**
@@ -22,6 +23,6 @@ class OrderPage extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.order-page');
+        return view('components.order');
     }
 }

@@ -1,9 +1,9 @@
 <div class="block-panel">
     <div class="head-page-panel">
         <a
-            href="Panel-orders.html"
+            href="#"
             class="active-head">Помещения</a>
-        <a href="#">Заявки</a>
+        <a href="{{ route('PanelOrdersPage') }}">Заявки</a>
         <div class="border-head"></div>
     </div>
 

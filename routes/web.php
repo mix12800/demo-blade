@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/roomedit/{rooms}', [RoomsController::class, 'update'])->name('roomedit');
     Route::get('/OrderPage', [UserController::class, 'OrderPage'])->name('OrderPage');
     Route::post('/OrderCreate', [OrdersController::class, 'store'])->name('OrderCreate');
+    Route::get('/PanelOrdersPage', [OrdersController::class, 'PanelOrdersPage'])->name('PanelOrdersPage');
 
     // Route::resource('room', RoomsController::class);
 });
