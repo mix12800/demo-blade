@@ -22,7 +22,7 @@
 
                 @foreach ($roomss as $room)
 
-                <tr>
+                <!-- <tr>
                     <td><img src="{{ asset('storage/'.$room->image) }}" alt="" /></td>
                     <td>
                         <h3>{{ $room->name }}</h3>
@@ -40,8 +40,10 @@
                             Редактировать
                         </button>
                     </td>
-                </tr>
-                
+                </tr> -->
+
+                <x-room-panel :room="$room" />
+
                 @endforeach
             </table>
         </div>
@@ -49,9 +51,54 @@
 </div>
 
 
+
+<!-- <div class="modal-fon modalEditRoom" id="modalEditRoom">
+    <div class="modal">
+        <form action="{{ route('roomedit', [$room->id]) }}" method="post" enctype="multipart/form-data">
+            <h1>Редактировать комнату</h1>
+            <div class="mb-3">
+                <label for="name" class="label-form">Название</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="{{ $room->name }}"
+                    class="input-form"
+                    placeholder="Название" />
+                @error('name')
+                <p class="error-form">
+                    {{ $message }}
+                </p>
+                @enderror
+
+            </div>
+            <div class="mb-3">
+                <label for="image" class="label-form">Фото</label>
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    class="input-form"
+                    placeholder="Фото" />
+                @error('image')
+                <p class="error-form">
+                    {{ $message }}
+                </p>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn btn-form w-100">
+                Сихранить
+            </button>
+        </form>
+
+    </div>
+</div> -->
+
 <div class="modal-fon" id="modalAddRoom">
     <div class="modal">
-        <form action="room" method="post" enctype="multipart/form-data">
+        <form action="room" id="formaddedit" method="post" enctype="multipart/form-data">
+
             <h1>Добавить комнату</h1>
             <div class="mb-3">
                 <label for="name" class="label-form">Название</label>
@@ -83,7 +130,6 @@
                 </p>
                 @enderror
             </div>
-
             <button type="submit" class="btn btn-form w-100">
                 Отправить
             </button>

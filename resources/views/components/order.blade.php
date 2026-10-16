@@ -16,23 +16,28 @@
            -----
            @endif
        </td>
-       <td>
-           <select class="select-status">
-               <option value="new" @if ($order->status == 'new') selected @endif>
-                   Новая
-               </option>
-               <option value="active" @if ($order->status == 'active') selected @endif>
-                   Мероприятие назначено
-               </option>
-               <option
-                   value="completed" @if ($order->status == 'completed') selected @endif>
-                   Завершено
-               </option>
-           </select>
-       </td>
-       <td>
-           <button class="btn btn-form p-05">
-               Сохранить
-           </button>
-       </td>
+       <form action="{{ route('OrderUpdateStatus', [$order->id]) }}" method="post">
+           <td>
+
+               <select class="select-status" name="status">
+                   <option value="new" @if ($order->status == 'new') selected @endif>
+                       Новая
+                   </option>
+                   <option value="active" @if ($order->status == 'active') selected @endif>
+                       Мероприятие назначено
+                   </option>
+                   <option
+                       value="completed" @if ($order->status == 'completed') selected @endif>
+                       Завершено
+                   </option>
+               </select>
+
+           </td>
+           <td>
+               <button class="btn btn-form p-05">
+                   Сохранить
+               </button>
+
+           </td>
+       </form>
    </tr>

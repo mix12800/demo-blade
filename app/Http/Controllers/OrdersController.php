@@ -61,7 +61,12 @@ class OrdersController extends Controller
      */
     public function update(UpdateOrdersRequest $request, Orders $orders)
     {
-        //
+        if (Auth::user()->role == 'admin') {
+            $orders->status = $request->status;
+            $orders->save();
+            return redirect()->route('PanelOrdersPage');
+        }
+        return abort(403);
     }
 
     /**
