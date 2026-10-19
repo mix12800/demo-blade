@@ -10,8 +10,8 @@
        <td> {{ $order->name }} </td>
        <td> {{ date('d.m.Y', strtotime($order->date)) }} </td>
        <td class="textwar">
-           @if ($order->comment && $order->comment[0])
-           $order->comment[0]
+           @if (count($order->comments) > 0)
+           {{ $order->comments[0]->comment }}
            @else
            -----
            @endif

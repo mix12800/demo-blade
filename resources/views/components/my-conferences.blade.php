@@ -34,13 +34,18 @@
                 @endif
             </td>
             <td>
-                <!-- <p>Отзыв отправлен</p> -->
+                @if (count($order->comments) > 0)
+                <p>Отзыв отправлен</p>
+                @else
                 <button
-                    class="btn btn-form btn-open-modal" @if ($order->status != 'completed')
+                    class="btn btn-form btn-open-modal-comment" @if ($order->status != 'completed')
                     disabled
-                    @endif>
+                    @endif data-id="{{ $order->id }}">
                     Оставить
                 </button>
+                @endif
+
+
             </td>
         </tr>
         @endforeach
@@ -50,28 +55,26 @@
 
 <div class="modal-fon" id="modalAddRoom">
     <div class="modal">
-        <h1>Отзыв о проведенном мероприятии</h1>
-        <div class="mb-3">
-            <label for="comment" class="label-form">Текст</label>
-            <textarea
-                name="comment"
-                id="comment"
+        <form id="formComment" action="" method="post">
+            <h1>Отзыв о проведенном мероприятии</h1>
+            <div class="mb-3">
+                <label for="comment" class="label-form">Текст</label>
+                <textarea
+                    name="comment"
+                    id="comment"
+                    class="input-form"
+                    placeholder="Ваш отзыв..."></textarea>
+                <p class="error-form">
 
-                class="input-form"
+                </p>
+            </div>
 
-                placeholder="Ваш отзыв..."></textarea>
-            <p class="error-form">
-
-            </p>
-        </div>
-
-
-        <button
-            class="btn btn-form w-100"
-            :disabled="!id_order"
-            @click="addComment()">
-            Отправить
-        </button>
+            <button
+                type="submit"
+                class="btn btn-form w-100">
+                Отправить
+            </button>
+        </form>
 
     </div>
 </div>

@@ -25,6 +25,7 @@ class StoreOrdersRequest extends FormRequest
         return [
             'name' => 'required',
             'date' => 'required|date|after_or_equal:today',
+            'room_id' => 'required',
             'pay' => 'required'
         ];
     }

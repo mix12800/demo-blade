@@ -25,7 +25,8 @@ class StoreUserRequest extends FormRequest
         return [
             'fio' => 'required|regex:/^[а-яА-ЯёЁ\s]+$/u',
             'email' => 'required|email|unique:users',
-            'login' => 'required|min:8|regex:/^[a-zA-Z0-9]+$/u|unique:users',
+            // 'login' => 'required|min:8|regex:/^[a-zA-Z0-9]+$/u|unique:users',
+            'login' => 'required|min:8|unique:users',
             'phone' => 'required|regex:/^8\(\d{3}\)\d{3}-\d{2}-\d{2}$/',
             'password' => 'required|min:8'
         ];

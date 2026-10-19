@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Comments;
 use App\Http\Requests\StoreCommentsRequest;
 use App\Http\Requests\UpdateCommentsRequest;
+use App\Models\Orders;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
@@ -27,9 +29,14 @@ class CommentsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCommentsRequest $request)
+    public function store(StoreCommentsRequest $request, Orders $orders)
     {
-        //
+        $comment = new Comments();
+        $comment->user_id = Auth::id();
+        $comment->order_id = $orders->id;
+        $comment->comment = $request->comment;
+        $comment->save();
+        return redirect()->route('index');
     }
 
     /**

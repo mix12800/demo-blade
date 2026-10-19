@@ -52,7 +52,7 @@
                     </option>
                     @endforeach
                 </select>
-                @error('room')
+                @error('room_id')
                 <p class="error-form">
                     {{ $message }}
                 </p>

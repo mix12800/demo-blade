@@ -66,7 +66,7 @@ class UserController extends Controller
                 $roomss = Rooms::get();
                 return view('index', compact('roomss'));
             } else {
-                $orders = Orders::with('room')->where('user_id', Auth::id())->get();
+                $orders = Orders::with('room', 'comments')->where('user_id', Auth::id())->get();
                 return view('index', compact('orders'));
             }
         }

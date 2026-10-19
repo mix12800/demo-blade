@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\UserController;
@@ -21,6 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/OrderCreate', [OrdersController::class, 'store'])->name('OrderCreate');
     Route::get('/PanelOrdersPage', [OrdersController::class, 'PanelOrdersPage'])->name('PanelOrdersPage');
     Route::post('/OrderUpdateStatus/{orders}', [OrdersController::class, 'update'])->name('OrderUpdateStatus');
+    Route::post('/CommentAdd/{orders}', [CommentsController::class, 'store'])->name('CommentAdd');
 
     // Route::resource('room', RoomsController::class);
 });
